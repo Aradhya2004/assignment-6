@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Guess the Number Game</h1>
+    <div class="btn"><button onclick="start()">Start Game</button></div>
+    <div id="output">
+         
+    </div>
+
+    <script>
+        function start() {
+            let numGuesses = 0;
+            guess = false;
+            let userInput = parseInt(prompt("Please enter a number between 1 and 100:"));
+            if (isNaN(userInput) || userInput < 1 || userInput > 100) {
+                alert("Invalid input. Please enter a number between 1 and 100.");
+                start();
+            }
+            else {
+                let output=document.getElementById("output")
+
+                for (let i = 1; i <= 5; i++) {
+                    numGuesses++;
+                    const Computerguess = Math.floor(Math.random() * 100) + 1;
+                    let h2=document.createElement("h2")
+                    h2.innerHTML=`Computer Guess:${Computerguess}`;
+                    output.append(h2);
+                    if (userInput === Computerguess) {
+                        guess = true;
+                        break;
+                    }
+                }
+               setTimeout(()=>{ if (guess) {
+                    alert("Computer wins!")
+                }
+                else {
+                    alert("User Wins!")
+                }
+            } ,1000)
+
+        }
+    }
+
+    </script>
+</body>
+
+</html>
